@@ -23,6 +23,13 @@ $(document).ready(function() {
                 var item = $('#items-wrapper').find('.likes[id=\'' + key + '\']');
                 item.html(parseInt(item.html()) + 1);
             });
+
+            $('input[type=checkbox]').prop('checked', false);
+            
+            $('#modal').fadeIn('fast');
+            $('#modal-close').click(function() {
+                $('#modal').fadeOut('fast');
+            });
             
         });
         

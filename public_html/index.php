@@ -74,7 +74,7 @@ $Results = new \Deirde\BbcNewsWithLikes\Results($url);
                                     </p>
                                     <p>
                                         <b>
-                                            <?php echo _('Likes') . ': '; ?>
+                                            <?php echo _('Votes') . ': '; ?>
                                         </b>
                                         <span id="<?php echo $item->link; ?>"
                                             class="likes">
@@ -96,6 +96,16 @@ $Results = new \Deirde\BbcNewsWithLikes\Results($url);
                     </ul>
                 </div>
             </div>
+        </div>
+        <div id="modal">
+            <p>
+                <?php echo _('Your votes has been signed. Thanks!'); ?>
+            </p>
+            <p>
+                <button id="modal-close" class="btn btn-sm btn-info">
+                    <?php echo _('Close'); ?>
+                </button>
+            </p>
         </div>
     </body>
 </html>
