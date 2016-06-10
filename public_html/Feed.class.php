@@ -18,7 +18,10 @@ namespace Deirde\BbcNewsWithLikes {
         var $language;
         var $ttl;
         var $likes = 0;
-        
+
+        /**
+         * @param array $attrs
+         */
         public function __construct(array $attrs) {
             
             foreach ($attrs as $key => $val) {
@@ -38,7 +41,10 @@ namespace Deirde\BbcNewsWithLikes {
             $this->getLikes($this->link);
             
         }
-        
+
+        /**
+         * @return \DOMDocument
+         */
         private function getStorageRes() {
             
             $response = new \DOMDocument();
@@ -46,7 +52,11 @@ namespace Deirde\BbcNewsWithLikes {
             return $response;
             
         }
-        
+
+        /**
+         * Assigns the current item likes to the property.
+         * @param $link
+         */
         private function getLikes($link) {
             
             $storageRes = $this->getStorageRes();

@@ -10,12 +10,34 @@ namespace Deirde\BbcNewsWithLikes
 
     class Results
     {
-        
+
+        /**
+         * Feed URL.
+         * @var string
+         */
         private $url;
+
+        /**
+         * Feed channel info.
+         * @var array
+         */
         public $channel = [];
+
+        /**
+         * Feeds.
+         * @var array
+         */
         private $item = [];
+
+        /**
+         * Page title.
+         * @var string
+         */
         private $pageTitle;
-        
+
+        /**
+         * @param $url
+         */
         public function __construct($url)
         {
             
@@ -54,9 +76,10 @@ namespace Deirde\BbcNewsWithLikes
             $this->pageTitle = get_class($this);
     
         }
-    
+
         /**
-         * Sets the feed channel attributes (and values).
+         * Sets the channel attributes and values.
+         * @param $xml
          */
         private function setFeedChannelAttrs($xml)
         {
@@ -69,7 +92,10 @@ namespace Deirde\BbcNewsWithLikes
             }
             
         }
-        
+
+        /**
+         * The URL parser.
+         */
         public function parseFeedUrl()
         {
             
@@ -89,7 +115,12 @@ namespace Deirde\BbcNewsWithLikes
             }
             
         }
-        
+
+        /**
+         * Finds a single feed item by id.
+         * @param $link
+         * @return bool
+         */
         private function findItemById($link)
         {
             
@@ -102,7 +133,11 @@ namespace Deirde\BbcNewsWithLikes
             return $response;
             
         }
-        
+
+        /**
+         * Gets all the posted likes.
+         * @param $likes
+         */
         private function getLikes($likes)
         {
                 
@@ -116,7 +151,11 @@ namespace Deirde\BbcNewsWithLikes
             $this->setLikes();
             
         }
-        
+
+        /**
+         * Gets all the ajax posted likes.
+         * @param null $_data
+         */
         private function xhrGetLikes($_data = null) {
             
             if ($_data) {
@@ -128,7 +167,11 @@ namespace Deirde\BbcNewsWithLikes
             exit();
             
         }
-        
+
+        /**
+         * Returns all the likes.
+         * @param $likes
+         */
         private function xhrReturnLikes($likes) {
             
             $response = [];
@@ -140,7 +183,10 @@ namespace Deirde\BbcNewsWithLikes
             exit(json_encode($response));
             
         }
-        
+
+        /**
+         * Sets the likes regenerating the file storage.
+         */
         private function setLikes()
         {
             
