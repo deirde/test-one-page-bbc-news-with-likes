@@ -54,7 +54,7 @@ namespace Deirde\BbcNewsWithLikes {
         }
 
         /**
-         * Assigns the current item likes to the property.
+         * It reads the storage file and assigns the current item likes to the item property.
          * @param $link
          */
         private function getLikes($link) {
