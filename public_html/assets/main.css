@@ -16,6 +16,11 @@ nav .navbar-header .navbar-brand {
 .right {
   float: right;
 }
+.on-hold {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  background-color: #eee;
+}
 #items-wrapper {
   float: left;
   padding: 0;
@@ -23,7 +28,7 @@ nav .navbar-header .navbar-brand {
 #items-wrapper li {
   float: left;
   list-style: none;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 #items-wrapper li .item-cover {
   width: 100%;
@@ -38,15 +43,25 @@ nav .navbar-header .navbar-brand {
   font-size: 13px;
   margin: 4px 0;
 }
-#items-wrapper li a.like {
+#items-wrapper li a.vote {
   text-decoration: none;
 }
-#items-wrapper li a.like span {
+#items-wrapper li a.vote span {
   font-size: 22px;
 }
-#items-wrapper li .bulk-like,
+#items-wrapper li .bulk-vote,
 #items-wrapper li .submit {
   text-align: center;
+}
+#items-wrapper li .submit {
+  display: block;
+  margin-bottom: -30px;
+}
+#items-wrapper li .submit.not-visible {
+  visibility: hidden;
+}
+#items-wrapper li .submit.visible {
+  visibility: visible;
 }
 #items-wrapper li:nth-child(4n+5) {
   clear: left;
@@ -58,7 +73,7 @@ nav .navbar-header .navbar-brand {
   left: 50%;
   width: 640px;
   height: 300px;
-  margin: -200px 0 0 -350px;
+  margin: -150px 0 0 -350px;
   padding: 30px;
   -webkit-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -67,4 +82,7 @@ nav .navbar-header .navbar-brand {
   background-clip: padding-box;
   border: 1px solid #acacac;
   z-index: 9999;
+}
+#modal .glyphicon {
+  font-size: 27px;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Deirde\BbcNewsWithLikes {
+namespace Deirde\BbcNewsWithVotes {
 
     class Feed {
         
@@ -17,7 +17,7 @@ namespace Deirde\BbcNewsWithLikes {
         var $copyright;
         var $language;
         var $ttl;
-        var $likes = 0;
+        var $votes = 0;
 
         /**
          * @param array $attrs
@@ -38,7 +38,7 @@ namespace Deirde\BbcNewsWithLikes {
                 
             }
                 
-            $this->getLikes($this->link);
+            $this->getVotes($this->link);
             
         }
 
@@ -54,10 +54,10 @@ namespace Deirde\BbcNewsWithLikes {
         }
 
         /**
-         * It reads the storage file and assigns the current item likes to the item property.
+         * It reads the storage file and assigns the current item votes to the item property.
          * @param $link
          */
-        private function getLikes($link) {
+        private function getVotes($link) {
             
             $storageRes = $this->getStorageRes();
             $dxp = new \DOMXPath($storageRes);
@@ -72,8 +72,8 @@ namespace Deirde\BbcNewsWithLikes {
                 $attrs[$key] = $val;
             }
             
-            if (isset($attrs['likes'])) {
-                $this->likes = $attrs['likes'];
+            if (isset($attrs['votes'])) {
+                $this->votes = $attrs['votes'];
             }
             
         }

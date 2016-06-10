@@ -18,13 +18,18 @@ nav {
 .right {
     float: right;
 }
+.on-hold {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    background-color: #eee;
+}
 #items-wrapper {
     float: left;
     padding: 0;
     li {
         float: left;
         list-style: none;
-        margin-bottom: 32px;
+        margin-bottom: 36px;
         .item-cover {
             width: 100%;
         }
@@ -38,15 +43,25 @@ nav {
             font-size: 13px;
             margin: 4px 0;
         }
-        a.like {
+        a.vote {
             text-decoration: none;
             span {
                 font-size: 22px;
             }
         }
-        .bulk-like,
+        .bulk-vote,
         .submit {
             text-align: center;
+        }
+        .submit {
+            display: block;
+            margin-bottom: -30px;
+            &.not-visible {
+                visibility: hidden;
+            }
+            &.visible {
+                visibility: visible;
+            }
         }
     }
     li:nth-child(4n+5) {
@@ -60,7 +75,7 @@ nav {
     left: 50%;
     width: 640px;
     height: 300px;
-    margin: -200px 0 0 -350px;
+    margin: -150px 0 0 -350px;
     padding: 30px;
     -webkit-box-shadow: 0 4px 16px rgba(0,0,0,.2);
     -moz-box-shadow: 0 4px 16px rgba(0,0,0,.2) ;
@@ -69,4 +84,7 @@ nav {
     background-clip: padding-box;
     border: 1px solid #acacac;
     z-index: 9999;
+    .glyphicon {
+        font-size: 27px;
+    }
 }

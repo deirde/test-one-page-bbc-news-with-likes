@@ -3,10 +3,11 @@
 require_once 'Results.class.php';
 
 $url = 'http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml';
-$Results = new \Deirde\BbcNewsWithLikes\Results($url);
+$Results = new \Deirde\BbcNewsWithVotes\Results($url);
 
 ?>
 
+<!DOCTYPE html>
 <html>
     <head>
         <title>
@@ -15,8 +16,8 @@ $Results = new \Deirde\BbcNewsWithLikes\Results($url);
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/assets/main.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-        <script src="/assets/main.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script type="text/javascript" src="/assets/main.js"></script>
     </head>
     <body>
         <div class="row">
@@ -57,8 +58,8 @@ $Results = new \Deirde\BbcNewsWithLikes\Results($url);
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <ul id="items-wrapper">
-                        <form id="likes" method="POST">
+                    <form id="votes" method="POST">
+                        <ul id="items-wrapper">
                             <?php foreach ($Results->items as $item) { ?>
                                 <li class="item col-md-3">
                                     <h2 class="item-heading">
@@ -77,33 +78,34 @@ $Results = new \Deirde\BbcNewsWithLikes\Results($url);
                                             <?php echo _('Votes') . ': '; ?>
                                         </b>
                                         <span id="<?php echo $item->link; ?>"
-                                            class="likes">
-                                            <?php echo $item->likes; ?>
+                                            class="votes">
+                                            <?php echo $item->votes; ?>
                                         </span>
                                     </p>
-                                    <p class="bulk-like">
-                                        <input type="checkbox" name="likes[<?php echo $item->link; ?>]" />
+                                    <p class="bulk-vote">
+                                        <input type="checkbox" name="votes[<?php echo $item->link; ?>]" />
                                         <?php echo _('Vote'); ?>
                                     </p>
-                                    <p class="submit hidden">
+                                    <p class="submit not-visible">
                                         <button type="submit" class="btn btn-sm btn-default">
                                             <?php echo _('Submit all your votes'); ?>
                                         </button>
                                     </p>
                                 </li>
                             <?php } ?>
-                        </form>
-                    </ul>
+                        </ul>
+                    </form>
                 </div>
             </div>
         </div>
         <div id="modal">
             <p>
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                 <?php echo _('Your votes has been signed. Thanks!'); ?>
             </p>
             <p>
                 <button id="modal-close" class="btn btn-sm btn-info">
-                    <?php echo _('Close'); ?>
+                    <?php echo _('Close or click outside the modal'); ?>
                 </button>
             </p>
         </div>

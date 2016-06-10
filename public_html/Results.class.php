@@ -1,9 +1,9 @@
 <?php
 
 /**
- * BBC news with likes
+ * BBC news with votes
  */
-namespace Deirde\BbcNewsWithLikes
+namespace Deirde\BbcNewsWithVotes
 {
     
     require_once('Feed.class.php');
@@ -45,14 +45,14 @@ namespace Deirde\BbcNewsWithLikes
             $this->url = $url;
             $this->parseFeedUrl();
             
-            if (isset($_POST['likes'])) {
-                $this->getLikes($_POST['likes']);
+            if (isset($_POST['votes'])) {
+                $this->getVotes($_POST['votes']);
             }
             
             if (isset($_POST['action']) 
-                && $_POST['action'] == 'xhrGetLikes'
+                && $_POST['action'] == 'xhrGetVotes'
                 && isset($_POST['data'])) {
-                $this->xhrGetLikes($_POST['data']);
+                $this->xhrGetVotes($_POST['data']);
             }
             
         }
@@ -135,33 +135,33 @@ namespace Deirde\BbcNewsWithLikes
         }
 
         /**
-         * Gets all the posted likes.
-         * @param $likes
+         * Gets all the posted votes.
+         * @param $votes
          */
-        private function getLikes($likes)
+        private function getVotes($votes)
         {
                 
-            foreach($likes as $key => $val) {
+            foreach($votes as $key => $val) {
                 
                 $item = $this->findItemById($key);
-                $item->likes++;
+                $item->votes++;
                 
             }
             
-            $this->setLikes();
+            $this->setVotes();
             
         }
 
         /**
-         * Gets all the ajax posted likes.
+         * Gets all the ajax posted votes.
          * @param null $_data
          */
-        private function xhrGetLikes($_data = null) {
+        private function xhrGetVotes($_data = null) {
             
             if ($_data) {
                 parse_str($_data, $data);
-                $this->getLikes($data['likes']);
-                $this->xhrReturnLikes($data['likes']);
+                $this->getVotes($data['votes']);
+                $this->xhrReturnVotes($data['votes']);
             }
             
             exit();
@@ -169,15 +169,15 @@ namespace Deirde\BbcNewsWithLikes
         }
 
         /**
-         * Returns all the likes.
-         * @param $likes
+         * Returns all the votes.
+         * @param $votes
          */
-        private function xhrReturnLikes($likes) {
+        private function xhrReturnVotes($votes) {
             
             $response = [];
-            foreach($likes as $key => $val) {
+            foreach($votes as $key => $val) {
                 $item = $this->findItemById($key);
-                $response[$key] = $item->likes;
+                $response[$key] = $item->votes;
             }
             
             exit(json_encode($response));
@@ -185,9 +185,9 @@ namespace Deirde\BbcNewsWithLikes
         }
 
         /**
-         * Sets the likes regenerating the file storage.
+         * Sets the votes regenerating the file storage.
          */
-        private function setLikes()
+        private function setVotes()
         {
             
             $contents = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -195,9 +195,9 @@ namespace Deirde\BbcNewsWithLikes
             
             foreach ($this->items as $item) {
                 
-                if ($item->likes > 0) {
+                if ($item->votes > 0) {
                     $contents .= '<item url="' . urlencode($item->link) . '">';
-                    $contents .= '<likes>' . $item->likes . '</likes>'; 
+                    $contents .= '<votes>' . $item->votes . '</votes>'; 
                     $contents .= '</item>'; 
                 }
                 
