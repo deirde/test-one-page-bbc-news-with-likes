@@ -23,8 +23,6 @@ nav .navbar-header .navbar-brand {
 #items-wrapper li {
   float: left;
   list-style: none;
-  width: 19%;
-  margin-right: 1%;
   margin-bottom: 32px;
 }
 #items-wrapper li .item-cover {
@@ -50,7 +48,7 @@ nav .navbar-header .navbar-brand {
 #items-wrapper li .submit {
   text-align: center;
 }
-#items-wrapper li:nth-child(5n+6) {
+#items-wrapper li:nth-child(4n+5) {
   clear: left;
 }
 #modal {

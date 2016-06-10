@@ -60,7 +60,7 @@ $Results = new \Deirde\BbcNewsWithLikes\Results($url);
                     <ul id="items-wrapper">
                         <form id="likes" method="POST">
                             <?php foreach ($Results->items as $item) { ?>
-                                <li class="item">
+                                <li class="item col-md-3">
                                     <h2 class="item-heading">
                                         <?php echo $item->title; ?>
                                     </h2>
