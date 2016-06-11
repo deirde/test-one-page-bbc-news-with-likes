@@ -14,6 +14,7 @@ The list component should consume the RSS feed, display the stories and allow th
 Create a webservice in your site which will be called when the user clicks the Vote button. The webservice should accept a list of votes and update the total votes for each story selected. Store this data as an XML file on your site.<br/>
 <br/>
 Rather than a vote button to submit all the selected stories you may wish to consider an AJAX solution to capture each story as it is selected/ deselected.<br/>
+<br/>
 Comment the code where you might make improvements given more time and assuming it was going to be actually used in a live environment.
 
 Note
