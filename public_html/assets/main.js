@@ -9,7 +9,6 @@ $(document).ready(function() {
         $(this).find('.visible').removeClass('visible').addClass('hidden');
     });
     
-    
     /**
      * Switchs off the modal.
      */      
