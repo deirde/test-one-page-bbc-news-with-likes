@@ -70,7 +70,7 @@ namespace Deirde\BbcNewsWithVotes
             if ($_data) {
                 parse_str($_data, $data);
                 
-                $data = array_keys($data['votes']);
+                $data = array_keys($data[$this->_]);
                 $this->save($data); // Triggers the save method.
                 $this->xhrResponse($data); // Triggers the XHR response.
             }
