@@ -62,7 +62,7 @@ namespace Deirde\BbcNewsWithVotes
         }
         
         /**
-         * Gets and cleas the xhr data.
+         * Gets and cleans the xhr data.
          * @param array $_data
          */
         private function xhrGet($_data) {
