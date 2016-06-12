@@ -1,12 +1,12 @@
 <?php
 
-require_once 'vendors/kint/Kint.class.php';
 require_once 'Results.class.php';
 require_once 'Votes.class.php';
-
 $url = 'http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml';
+
 $Results = new \Deirde\BbcNewsWithVotes\Results($url);
 $Votes = new \Deirde\BbcNewsWithVotes\Votes($_REQUEST);
+
 ?>
 
 <!DOCTYPE html>
