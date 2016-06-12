@@ -146,11 +146,11 @@ namespace Deirde\BbcNewsWithVotes
                 );
             }
             
-            $int_items = array();
-            
             // If the XML exists and it contains at least one item.
             if (is_array($items)
                 && isset($items['item'])) {
+                    
+                $int_items = array();
                
                 // Gets the items from the storage XML file.
                 foreach ($items['item'] as $item) {
