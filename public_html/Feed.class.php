@@ -89,7 +89,8 @@ namespace Deirde\BbcNewsWithVotes {
         private function getStorageRes() {
             
             $response = new \DOMDocument();
-            @$response->load(__DIR__ . DIRECTORY_SEPARATOR . $this->storageXmlFileName);
+            @$response->load(__DIR__ . DIRECTORY_SEPARATOR . 
+                $this->storageXmlFileName);
             return $response;
             
         }

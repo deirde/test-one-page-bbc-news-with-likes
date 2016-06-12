@@ -1,14 +1,14 @@
 $(document).ready(function() {
     
     /**
-     * The post has been submitted, switchs on the modal.
+     * If the flash variable exists opens the modal.
      */
      if (flash == 'ok') {
-         modalOn();
+        modalOn();
      }
     
     /**
-     * Show and hide the submit btns.
+     * Shows and hides the submit btns.
      */
     $('li.item').mouseover(function() {
         $(this).find('.not-visible').addClass('visible').removeClass('hidden');
@@ -17,34 +17,34 @@ $(document).ready(function() {
     });
     
     /**
-     * Switchs off the modal.
-     */      
-    function modalOff() {
-        
-        $('#modal').fadeOut('fast', function() {
-            $('#wrapper').removeClass('on-hold');
-        });
-        
-    }
+     * Opens the modal.
+     */
+     function modalOff() {
+        $('#modal').fadeOut('fast');
+        $('#wrapper').removeClass('on-hold');
+     } 
     
     /**
-     * Switchs on the modal.
+     * Closes the modal.
      */ 
     function modalOn() {
         
-        // The parent element on hold.
         $('#wrapper').addClass('on-hold');
+        
+        // Resets the checkboxes.
+        $('input[type=checkbox]').prop('checked', false);
          
-        $('#modal').fadeIn('fast', function() {
+        $('#modal').fadeIn('fast', function(e) {
             
-            // Closes the modal on click outside.
+            // On click outside.
             $('html').click(function (e) {
-                if (e.target.id != 'modal') {
+                if ($('#modal').is(":visible")
+                    && e.target.id != 'modal') {
                     modalOff();
                 }
             });
             
-            // Closes the modal on close button click.
+            // On button click.
             $('#modal-close').click(function() {
                 modalOff();
             });
@@ -60,12 +60,11 @@ $(document).ready(function() {
         
         e.preventDefault();
         
-        var post = $('#votes').serialize();
-        
-        if (post && $('#modal:hidden')) {
+        if ((post = $('#votes').serialize())
+            && $('#modal:hidden')) {
             
-            // The parent element on hold.
-            $('#wrapper').addClass('on-hold'); // @TODO. It's fired only the first time, weird behavior, to investigate.
+            // The parent element is put immediately on hold.
+            $('#wrapper').addClass('on-hold');
             
             $.ajax({
                 method: 'POST',
@@ -74,23 +73,15 @@ $(document).ready(function() {
                     data: post
                 }
             }).done(function(data) {
-                
                 if (data) {
-                    
                     var obj = jQuery.parseJSON(data);
                     $.each(obj, function(key, val) {
-                        var item = $('#items-wrapper').find('.votes[id=\'' + val + '\']');
+                        var item = $('#items-wrapper')
+                            .find('.votes[id=\'' + val + '\']');
                         item.html(parseInt(item.html()) + 1);
                     });
-                    
-                    // Resets the checkboxes.
-                    $('input[type=checkbox]').prop('checked', false);
-                    
-                    // Opens the modal.
-                    modalOn();
-                    
+                    modalOn(); // It opens the modal.
                 }
-                
             });
             
         }
