@@ -4,22 +4,63 @@ namespace Deirde\BbcNewsWithVotes {
 
     class Feed {
         
+        /**
+         * @var string
+         */
         var $title;
+        
+        /**
+         * @var string
+         */
         var $description;
+        
+        /**
+         * @var string
+         */
         var $link;
+        
+        /**
+         * @var array
+         */
         var $image = [
             'url',
             'title',
             'link'
         ];
+        
+        /**
+         * @var string
+         */
         var $generator;
+        
+        /**
+         * @var string
+         */
         var $lastBuildDate;
+        
+        /**
+         * @var string
+         */
         var $copyright;
+        
+        /**
+         * @var string
+         */
         var $language;
-        var $ttl;
+        
+        /**
+         * @var int
+         */
         var $votes = 0;
+        
+        /**
+         * Storage XML file name.
+         * @var string
+         */
+        private $storageXmlFileName = 'data.xml';
 
         /**
+         * The class constructor.
          * @param array $attrs
          */
         public function __construct(array $attrs) {
@@ -43,19 +84,20 @@ namespace Deirde\BbcNewsWithVotes {
         }
 
         /**
-         * @return \DOMDocument
+         * @return object(DOMDocument)
          */
         private function getStorageRes() {
             
             $response = new \DOMDocument();
-            @$response->load(__DIR__ . DIRECTORY_SEPARATOR . 'data.xml');
+            @$response->load(__DIR__ . DIRECTORY_SEPARATOR . $this->storageXmlFileName);
             return $response;
             
         }
 
         /**
-         * It reads the storage file and assigns the current item votes to the item property.
-         * @param $link
+         * Reads the storage file and assigns the item votes to the item property.
+         * @param string $link
+         * @return bool(true)
          */
         private function getVotes($link) {
             
@@ -64,7 +106,7 @@ namespace Deirde\BbcNewsWithVotes {
             $id = urlencode($link); 
             false && $node = new \DOMElement();
             
-            $query = $dxp->query("//item[@url='". $id ."']/*");
+            $query = $dxp->query("//item[@link='". $id ."']/*");
             
             foreach($query as $node){
                 $key = $node->nodeName;
@@ -75,6 +117,8 @@ namespace Deirde\BbcNewsWithVotes {
             if (isset($attrs['votes'])) {
                 $this->votes = $attrs['votes'];
             }
+            
+            return true;
             
         }
         

@@ -1,32 +1,37 @@
 <?php
 
+require_once 'vendors/kint/Kint.class.php';
 require_once 'Results.class.php';
+require_once 'Votes.class.php';
 
 $url = 'http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml';
 $Results = new \Deirde\BbcNewsWithVotes\Results($url);
-
+$Votes = new \Deirde\BbcNewsWithVotes\Votes($_REQUEST);
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <title>
-            <?php echo $Results->getPageTitle(); ?>
+            <?php echo $Results->pageTitle; ?>
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/assets/main.css">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            var flash = '<?php echo ((isset($_SESSION['flash'])) ? "ok" : "ko"); ?>';
+        </script>
         <script type="text/javascript" src="/assets/main.js"></script>
     </head>
     <body>
-        <div class="row">
+        <div id="wrapper" class="row">
             <div class="container">
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="/">
-                                <?php echo $Results->getPageTitle(); ?>
+                                <?php echo $Results->pageTitle; ?>
                             </a>
                         </div>
                     </div>
@@ -87,8 +92,11 @@ $Results = new \Deirde\BbcNewsWithVotes\Results($url);
                                         <?php echo _('Vote'); ?>
                                     </p>
                                     <p class="submit not-visible">
-                                        <button type="submit" class="btn btn-sm btn-default">
-                                            <?php echo _('Submit all your votes'); ?>
+                                        <button type="submit" class="btn btn-sm btn-default xhr">
+                                            <?php echo _('XHR post your votes'); ?>
+                                        </button>
+                                        <button type="submit" class="btn btn-sm btn-default post">
+                                            <?php echo _('Post your votes'); ?>
                                         </button>
                                     </p>
                                 </li>
@@ -109,5 +117,6 @@ $Results = new \Deirde\BbcNewsWithVotes\Results($url);
                 </button>
             </p>
         </div>
+        <?php unset($_SESSION['flash']); ?>
     </body>
 </html>
