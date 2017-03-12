@@ -20,7 +20,4 @@ Comment the code where you might make improvements given more time and assuming 
 Note
 ----
 This is a technical test.<br/>
-TIME: 180 minutes.<br/>
-URL: http://test-one-page-bbc-news-with-likes.123beta.net/<br/>
-Uid: test123<br/>
-Psw: test123
+TIME: 180 minutes.
